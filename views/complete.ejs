@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="css/style.css" />
+    <title>Bo's Image Uploader</title>
+    <script>
+      function handleClick() {
+        console.log("clicked");
+        navigator.clipboard.writeText("<%=url%>");
+      }
+    </script>
+  </head>
+  <body>
+    <main class="flex">
+      <div class="card flex">
+        <div class="svg-wrapper">
+          <svg
+            id="check"
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke-width="1.5"
+            stroke="currentColor"
+            class="w-6 h-6"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+            />
+          </svg>
+        </div>
+
+        <h1>Uploaded successfully</h1>
+        <img
+          src="<%=url%>"
+          alt="placeholder img"
+          class="placeholder-img uploaded-img"
+        />
+        <div class="url-container">
+          <span class="url-text"> <%= url %> </span>
+          <button onclick="handleClick()" class="copy-btn">Copy Link</button>
+        </div>
+      </div>
+    </main>
+  </body>
+</html>

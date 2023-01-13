@@ -67,7 +67,54 @@ button,
   border: none;
   outline: none;
   font-size: 0.75rem;
+  cursor: pointer;
 }
 input {
   display: none;
+}
+
+.check {
+  width: 15px;
+}
+svg {
+  color: green;
+}
+
+.svg-wrapper {
+  width: 50px;
+  height: auto;
+}
+
+.uploaded-img {
+  display: block;
+  width: 338px;
+  height: 225px;
+  border-radius: 12px;
+}
+.url-container {
+  width: 338px;
+  height: 34px;
+
+  background: #f6f8fb;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  position: relative;
+  font-size: 0.5rem;
+  display: flex;
+  align-items: center;
+  padding: 10px;
+  overflow: hidden;
+  box-sizing: border-box;
+}
+.url-text {
+  font-size: 0.5rem;
+  color: #4f4f4f;
+}
+
+.copy-btn {
+  position: absolute;
+  right: 0;
+  height: 95%;
+  line-height: 95%;
+  font-size: 0.7rem;
 }

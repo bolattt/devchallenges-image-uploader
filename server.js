@@ -2,7 +2,8 @@ const express = require("express");
 const app = express();
 const path = require("path");
 
-const upload = require("./utils/multer");
+const upload = require("./utils/multer"); // multer
+const cloudinary = require("./utils/cloudinary");
 
 const PORT = process.env.PORT || 3002;
 
@@ -16,7 +17,19 @@ app.get("/", (req, res) => {
 });
 
 app.post("/", upload.single("image"), (req, res) => {
-  res.send("filed uploaded");
+  console.log(req.file.path);
+
+  const response = cloudinary.uploader.upload(req.file.path);
+
+  response
+    .then((data) => {
+      console.log(data);
+      console.log("data.secure_url", data.secure_url);
+      res.render("complete", { url: data.secure_url });
+    })
+    .catch((err) => {
+      console.log(err);
+    });
 });
 
 app.listen(PORT, () => {
