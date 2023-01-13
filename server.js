@@ -13,6 +13,10 @@ app.get("/", (req, res) => {
   res.render("index");
 });
 
+app.post("/", (req, res) => {
+  res.send("filed uploaded");
+});
+
 app.listen(PORT, () => {
   console.log(`server started on port ${PORT}`);
 });

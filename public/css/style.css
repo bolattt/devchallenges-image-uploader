@@ -35,7 +35,7 @@ h1 {
   padding: 10px;
 }
 
-.dots {
+.drop-zone {
   justify-content: space-evenly;
   width: 338px;
   height: 218px;
@@ -58,7 +58,8 @@ small {
   font-size: 0.7rem;
 }
 
-button {
+button,
+.open {
   padding: 10px 15px;
   border-radius: 8px;
   background-color: #2f80ed;
@@ -66,4 +67,7 @@ button {
   border: none;
   outline: none;
   font-size: 0.75rem;
+}
+input {
+  display: none;
 }
