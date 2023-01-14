@@ -121,20 +121,20 @@ svg {
 
 /* tooltip  */
 .tooltiptext {
-  visibility: visible;
   width: 140px;
   background-color: #555;
   color: #fff;
   text-align: center;
   border-radius: 6px;
   padding: 5px;
-  position: absolute;
-  z-index: 1;
-  bottom: 150%;
-  left: 50%;
-  margin-left: -75px;
+  z-index: 10;
+  transition: opacity 0.5s;
+
+  visibility: hidden;
   opacity: 0;
-  transition: opacity 0.3s;
+  position: absolute;
+  right: 98px;
+  top: 5px;
 }
 
 .tooltip .tooltiptext::after {

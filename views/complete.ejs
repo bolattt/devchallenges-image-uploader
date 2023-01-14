@@ -10,6 +10,8 @@
       function handleClick() {
         console.log("clicked");
         navigator.clipboard.writeText("<%=url%>");
+        const tooltiptext = document.querySelector("#myTooltip");
+        tooltiptext.innerText = "Copied!";
       }
     </script>
   </head>
