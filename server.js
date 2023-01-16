@@ -17,6 +17,7 @@ app.get("/", (req, res) => {
 });
 
 app.post("/", upload.single("image"), (req, res) => {
+  console.log(req.body);
   console.log(req.file.path);
 
   const response = cloudinary.uploader.upload(req.file.path);
@@ -30,6 +31,10 @@ app.post("/", upload.single("image"), (req, res) => {
     .catch((err) => {
       console.log(err);
     });
+});
+
+app.post("/drop", (req, res) => {
+  console.log(req);
 });
 
 app.listen(PORT, () => {

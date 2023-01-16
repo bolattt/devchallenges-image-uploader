@@ -19,5 +19,20 @@ dropZone.addEventListener("dragleave", () => {
 
 dropZone.addEventListener("drop", (e) => {
   e.preventDefault();
-  alert("dropped");
+  console.log(e.dataTransfer.files[0]);
+  const file = e.dataTransfer.files[0];
+  let formData = new FormData();
+  formData.append("file", file);
+  console.log("form", formData);
+
+  fetch("/drop", {
+    method: "POST",
+    body: formData,
+  })
+    .then((res) => {
+      if (res.ok) {
+        console.log("uploaded");
+      }
+    })
+    .catch((err) => console.log(err));
 });
