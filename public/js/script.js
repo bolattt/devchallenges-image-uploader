@@ -20,27 +20,24 @@ dropZone.addEventListener("dragleave", () => {
 
 dropZone.addEventListener("drop", (event) => {
   event.preventDefault();
+
   const file = event.dataTransfer.files[0];
   console.log(file);
+
   let formData = new FormData();
-  //   formData.append("key1", "value1");
-  //   formData.append("key2", "value2");
-  //   formData.append("file", file);
   formData.append("image", file);
-  console.log("entrie", formData.entries());
   for (var pair of formData.entries()) {
     console.log(pair[0] + ", " + pair[1]);
   }
 
   fetch("/", {
     method: "POST",
-
     body: formData,
   })
-    .then((res) => {
-      if (res.ok) {
-        console.log("uploaded");
-      }
+    .then((res) => res.json())
+    .then((data) => {
+      console.log(data.url);
+      window.location.href = data.url;
     })
     .catch((err) => console.log(err));
 });
