@@ -1,6 +1,13 @@
 const multer = require("multer");
 const path = require("path");
 
+function fileFilter(req, file, cb) {
+  if (file.mimetype !== "image/png") {
+    return cb(new Error("Something went wrong"), false);
+  }
+  cb(null, true);
+}
+
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
     cb(null, "./public/uploads");
@@ -15,6 +22,6 @@ const storage = multer.diskStorage({
   },
 });
 
-const upload = multer({ storage: storage });
+const upload = multer({ storage: storage, fileFilter: fileFilter });
 
 module.exports = upload;

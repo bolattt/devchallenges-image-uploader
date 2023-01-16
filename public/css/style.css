@@ -89,6 +89,7 @@ svg {
   display: block;
   width: 338px;
   height: 225px;
+  object-fit: contain;
   border-radius: 12px;
 }
 .url-container {

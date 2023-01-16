@@ -1,24 +1,22 @@
 const tooltiptext = document.querySelector("#myTooltip");
 const dropZone = document.getElementById("drop-zone");
 const uploadBtn = document.getElementById("upload-btn");
-const form = document.querySelector("form");
 
 function handleClick() {
-  console.log("clicked");
   navigator.clipboard.writeText("<%=url%>");
   tooltiptext.innerText = "Copied!";
 }
 
-dropZone.addEventListener("dragover", (e) => {
+dropZone?.addEventListener("dragover", (e) => {
   e.preventDefault();
   console.log("drag over");
 });
 
-dropZone.addEventListener("dragleave", () => {
+dropZone?.addEventListener("dragleave", () => {
   console.log("drag leave ");
 });
 
-dropZone.addEventListener("drop", (event) => {
+dropZone?.addEventListener("drop", (event) => {
   event.preventDefault();
 
   const file = event.dataTransfer.files[0];
@@ -26,6 +24,7 @@ dropZone.addEventListener("drop", (event) => {
 
   let formData = new FormData();
   formData.append("image", file);
+  formData.append("isUsingFetch", true);
   for (var pair of formData.entries()) {
     console.log(pair[0] + ", " + pair[1]);
   }

@@ -2,10 +2,8 @@ const express = require("express");
 const app = express();
 const path = require("path");
 
-const upload = require("./utils/multer"); // multer
+const upload = require("./utils/multer");
 const cloudinary = require("./utils/cloudinary");
-const { time } = require("console");
-const { setTimeout } = require("timers");
 
 const PORT = process.env.PORT || 3002;
 
@@ -20,8 +18,8 @@ app.get("/", (req, res) => {
 
 app.post("/", upload.single("image"), (req, res) => {
   console.log("file path", req.file.path);
+  console.log("req.body", req.body);
   const url = `${req.protocol}://${req.get("host")}${req.originalUrl}`;
-  console.log("url", url);
   const response = cloudinary.uploader.upload(req.file.path);
 
   response
@@ -29,8 +27,11 @@ app.post("/", upload.single("image"), (req, res) => {
       // console.log("cloudinary data > ", data);
       console.log("data.secure_url > ", data.secure_url);
       // res.render("complete", { url: data.secure_url });
-
-      res.send({ url: url + `complete?url=${data.secure_url}` });
+      if (req.body.isUsingFetch) {
+        res.send({ url: url + `complete?url=${data.secure_url}` });
+      } else {
+        res.render("complete", { url: data.secure_url });
+      }
     })
     .catch((err) => {
       console.log(err);
