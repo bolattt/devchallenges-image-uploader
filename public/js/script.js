@@ -1,6 +1,7 @@
 const tooltiptext = document.querySelector("#myTooltip");
 const dropZone = document.getElementById("drop-zone");
 const uploadBtn = document.getElementById("upload-btn");
+const form = document.querySelector("form");
 
 function handleClick() {
   console.log("clicked");
@@ -17,16 +18,23 @@ dropZone.addEventListener("dragleave", () => {
   console.log("drag leave ");
 });
 
-dropZone.addEventListener("drop", (e) => {
-  e.preventDefault();
-  console.log(e.dataTransfer.files[0]);
-  const file = e.dataTransfer.files[0];
+dropZone.addEventListener("drop", (event) => {
+  event.preventDefault();
+  const file = event.dataTransfer.files[0];
+  console.log(file);
   let formData = new FormData();
-  formData.append("file", file);
-  console.log("form", formData);
+  //   formData.append("key1", "value1");
+  //   formData.append("key2", "value2");
+  //   formData.append("file", file);
+  formData.append("image", file);
+  console.log("entrie", formData.entries());
+  for (var pair of formData.entries()) {
+    console.log(pair[0] + ", " + pair[1]);
+  }
 
-  fetch("/drop", {
+  fetch("/", {
     method: "POST",
+
     body: formData,
   })
     .then((res) => {

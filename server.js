@@ -33,8 +33,10 @@ app.post("/", upload.single("image"), (req, res) => {
     });
 });
 
-app.post("/drop", (req, res) => {
-  console.log(req);
+app.post("/drop", upload.single("image"), (req, res) => {
+  console.log(req.body);
+  console.log(req.file);
+  console.log(req.files);
 });
 
 app.listen(PORT, () => {
