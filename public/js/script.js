@@ -22,21 +22,32 @@ dropZone?.addEventListener("drop", (event) => {
   const file = event.dataTransfer.files[0];
   console.log(file);
 
-  let formData = new FormData();
-  formData.append("image", file);
-  formData.append("isUsingFetch", true);
-  for (var pair of formData.entries()) {
-    console.log(pair[0] + ", " + pair[1]);
-  }
+  const validTypes = ["image/jpeg", "image/png", "image/gif"];
+  if (validTypes.includes(file.type)) {
+    let formData = new FormData();
+    formData.append("image", file);
+    formData.append("isUsingFetch", true);
+    for (var pair of formData.entries()) {
+      console.log(pair[0] + ", " + pair[1]);
+    }
 
-  fetch("/", {
-    method: "POST",
-    body: formData,
-  })
-    .then((res) => res.json())
-    .then((data) => {
-      console.log(data.url);
-      window.location.href = data.url;
+    fetch("/", {
+      method: "POST",
+      body: formData,
     })
-    .catch((err) => console.log(err));
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data.url);
+        window.location.href = data.url;
+      })
+      .catch((err) => console.log(err));
+  } else {
+    alert("invavlid form data");
+  }
 });
+
+function validateFormat(file) {
+  console.log(file.type);
+  if (validTypes.includes(file.type)) {
+  }
+}

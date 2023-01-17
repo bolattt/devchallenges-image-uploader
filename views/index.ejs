@@ -26,7 +26,12 @@
         <small>Or</small>
         <form action="/" enctype="multipart/form-data" method="POST">
           <label>
-            <input type="file" name="image" style="display: none" />
+            <input
+              type="file"
+              name="image"
+              accept="image/*"
+              style="display: none"
+            />
             <a class="open">Upload a file</a>
           </label>
           <button id="upload-btn">submit</button>
