@@ -26,12 +26,7 @@ app.post("/", upload.single("image"), (req, res) => {
     .then((data) => {
       // console.log("cloudinary data > ", data);
       console.log("data.secure_url > ", data.secure_url);
-      // res.render("complete", { url: data.secure_url });
-      if (req.body.isUsingFetch) {
-        res.send({ url: url + `complete?url=${data.secure_url}` });
-      } else {
-        res.render("complete", { url: data.secure_url });
-      }
+      res.send({ url: url + `complete?url=${data.secure_url}` });
     })
     .catch((err) => {
       console.log(err);

@@ -1,10 +1,11 @@
 const tooltiptext = document.querySelector("#myTooltip");
 const dropZone = document.getElementById("drop-zone");
-const uploadBtn = document.getElementById("upload-btn");
+// const uploadBtn = document.getElementById("upload-btn");
 const inputEl = document.getElementById("input");
+const urlText = document.querySelector(".url-text");
 
-function handleClick() {
-  navigator.clipboard.writeText("<%=url%>");
+function handleCopyClick(url) {
+  navigator.clipboard.writeText(urlText.innerText);
   tooltiptext.innerText = "Copied!";
 }
 
@@ -55,6 +56,6 @@ dropZone?.addEventListener("dragleave", () => {
   console.log("drag leave ");
 });
 
-inputEl.addEventListener("change", (e) => handleUpload(e));
+inputEl?.addEventListener("change", (e) => handleUpload(e));
 
 dropZone?.addEventListener("drop", (e) => handleUpload(e));
